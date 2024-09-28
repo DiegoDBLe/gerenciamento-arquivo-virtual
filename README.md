@@ -1,4 +1,6 @@
-# gerenciamento-arquivo-virtual
+#Teste Essia
+
+### gerenciamento-arquivo-virtual
 Um sistema para gerenciar diretórios e arquivos, com funcionalidades como criação de diretórios, adição de arquivos e gerenciamento de subdiretórios, utilizando uma API estruturada com front-end em Vue.js e back-end em Spring Boot
 Este projeto foi desenvolvido como parte do processo seletivo para a vaga de desenvolvedor Java na Essia. O repositório completo pode ser acessado [aqui](https://github.com/DiegoDBLe/gerenciamento-arquivo-virtual.git).
 
@@ -54,8 +56,6 @@ O projeto foi desenvolvido utilizando as seguintes tecnologias:
 - **PrimeVue**: Biblioteca de componentes para Vue.js, usada para construir a interface.
 - **SweetAlert2**: Utilizado para exibir alertas amigáveis para o usuário.
 
-## Como Executar o Projeto
-
 ### Pré-requisitos
 
 Para rodar este projeto, você precisa ter instalado:
@@ -65,4 +65,15 @@ Para rodar este projeto, você precisa ter instalado:
 - **Node.js** e **npm**
 - **H2**
 
+### Passos para Executar
 
+1. Clone o repositório:
+
+```bash
+git clone https://github.com/DiegoDBLe/gerenciamento-arquivo-virtual
+cd gerenciamento-arquivo-virtual
+mvn spring-boot:run
+Navegue até o diretório do front-end e instale as dependências:
+npm install
+Para rodar os testes unitários:
+mvn test´´´
