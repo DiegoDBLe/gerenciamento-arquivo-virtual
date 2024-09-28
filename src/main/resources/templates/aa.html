@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="pt">
+<head>
+    <title>Listagem de Diretórios</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f8f9fa;
+        }
+        h1 {
+            color: #333;
+            text-align: center;
+        }
+        ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        li {
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            background-color: #ffffff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .diretorio {
+            font-weight: bold;
+            font-size: 1.2em;
+            color: #007BFF;
+        }
+        .subdiretorio {
+            font-weight: bold;
+            font-size: 1.1em;
+            color: #28a745;
+            padding-left: 10px;
+        }
+        .arquivo {
+            color: #17a2b8;
+            padding-left: 20px;
+        }
+        .section-title {
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-top: 10px;
+            margin-bottom: 5px;
+            color: #333;
+        }
+        .diretorio-list {
+            margin-left: 20px;
+        }
+        .form-container {
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #e9ecef;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+<h1>Diretórios</h1>
+
+<div class="form-container">
+    <form th:action="@{/diretorios}" method="post" th:object="${novoDiretorio}">
+        <input type="hidden" th:field="*{id}"/>
+        <label for="nome">Nome do Diretório:</label>
+        <input type="text" id="nome" th:field="*{nome}" required/>
+        <button type="submit">Salvar Diretório</button>
+    </form>
+</div>
+
+<ul>
+    <li th:each="diretorio : ${diretorios}">
+        <div class="section-title">Diretório:</div>
+        <span class="diretorio" th:text="${diretorio.nome}">Diretório</span>
+
+        <form th:action="@{/diretorios/{id}(id=${diretorio.id})}" method="post" style="display:inline;">
+            <button type="submit">Deletar</button>
+        </form>
+
+        <div class="section-title">Arquivos:</div>
+        <ul class="diretorio-list">
+            <li th:each="arquivo : ${diretorio.arquivos}">
+                <span class="arquivo" th:text="${arquivo.nome}">Arquivo</span>
+            </li>
+        </ul>
+
+        <div class="section-title">Subdiretórios:</div>
+        <ul class="diretorio-list">
+            <li th:each="subDiretorio : ${diretorio.subDiretorios}">
+                <span class="subdiretorio" th:text="${subDiretorio.nome}">Subdiretório</span>
+
+                <div class="section-title">Arquivos:</div>
+                <ul class="diretorio-list">
+                    <li th:each="subArquivo : ${subDiretorio.arquivos}">
+                        <span class="arquivo" th:text="${subArquivo.nome}">Arquivo</span>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </li>
+</ul>
+
+<script>
+    function editarDiretorio(id, nome) {
+        const form = document.querySelector('form');
+        form.id.value = id;
+        form.nome.value = nome;
+    }
+</script>
+
+</body>
+</html>
